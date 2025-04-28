@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router";
 import handleAPIFetch from "../helpers/handleFetch";
 import RegistrationFormField from "../components/ui/RegistrationFormField";
 import imagen from "../assets/onboarding.png";
@@ -10,6 +11,8 @@ export default function RegistrationPage() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
+
+  const navigate = useNavigate();
 
   async function handleSubmit (e: React.FormEvent) {
       e.preventDefault();
@@ -23,8 +26,7 @@ export default function RegistrationPage() {
       }
       const result = await handleAPIFetch('/api/users/register-admin', 'POST', [201], { nombre, email, password, confirmPassword });
       if (result) {
-          //console.log(result);
-          //navigate('/');
+          navigate('/dashboard');
       }
     };
     
@@ -44,7 +46,7 @@ export default function RegistrationPage() {
                   <FormField labelHtmlFor="password" labeltext="ingresa tu contraseña" inputType="password" valueSetter={setPassword} inputValue={password} />
                   <FormField labelHtmlFor="confirmPassword" labeltext="confirma tu contraseña" inputType="password" valueSetter={setConfirmPassword} inputValue={confirmPassword} />
                   <div className="flex justify-center w-full h-[15%]">
-                    <button type="submit" className="w-[70%] h-full rounded bg-[#338680] text-white">crear mi cuenta</button>
+                    <button type="submit" className="w-[70%] h-full rounded bg-[#338680] text-white">Crear mi cuenta</button>
                   </div>
               </form>
           </div>

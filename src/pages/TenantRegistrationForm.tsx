@@ -23,7 +23,6 @@ export default function TenantRegistrationForm() {
         );
 
         if (result) {
-            //console.log(result);
             navigate('/admin/user/register');
         }
     }
@@ -41,7 +40,7 @@ export default function TenantRegistrationForm() {
                   <FormField labelHtmlFor="nombre_residencial" labeltext="ingresa el nombre de tu residencial"
                   inputType="text" valueSetter={setNombreResidencial} inputValue={nombreResidencial}/>
                   <div className="flex justify-center w-full mt-2">
-                      <button type="submit" className="w-[70%] h-12 rounded bg-[#338680] text-white">crear mi cuenta</button>
+                      <button type="submit" className="w-[70%] h-12 rounded bg-[#338680] text-white">Continuar</button>
                   </div>
               </form>
           </div>
