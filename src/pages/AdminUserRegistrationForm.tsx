@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router";
 import handleAPIFetch from "../helpers/handleFetch";
 import RegistrationFormField from "../components/ui/RegistrationFormField";
@@ -11,6 +11,19 @@ export default function RegistrationPage() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
+  const [authorized, setAuthorized] = useState(false);
+  
+  useEffect(() => {
+      async function checkAuthorization() {
+        const response = await handleAPIFetch('/api/users/admin/register-access', "GET", [200], "include");
+          if (!response || response.message !== "authorized") {
+            navigate('/tenant/register');
+            return;
+        }
+        setAuthorized(true);
+      }
+      checkAuthorization();
+  }, []);
 
   const navigate = useNavigate();
 
@@ -25,13 +38,14 @@ export default function RegistrationPage() {
           return;
       }
       const result = await handleAPIFetch('/api/users/register-admin', 'POST', [201], "include", { nombre, email, password, confirmPassword });
-      if (result) {
+    if (result) {
+        console.log("exito en el registro");      
           navigate('/dashboard');
       }
     };
     
 
-  return (
+  return ( authorized ?
       <div className="min-h-screen flex items-center justify-center">
           <img src={imagen} alt=""
               className="w-[50vw] h-[100vh] hidden smd:block" />
@@ -50,6 +64,6 @@ export default function RegistrationPage() {
                   </div>
               </form>
           </div>
-    </div>
+    </div> : null
   );
 }

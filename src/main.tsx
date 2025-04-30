@@ -2,7 +2,7 @@ import './index.css'
 import App from './App.tsx'
 import { createRoot } from 'react-dom/client'
 import { BrowserRouter, Route, Routes } from 'react-router'
-import UserRegistrationForm from './pages/UserRegistrationForm.tsx'
+import UserRegistrationForm from './pages/AdminUserRegistrationForm.tsx'
 import TenantRegistrationForm from './pages/TenantRegistrationForm.tsx';
 
 createRoot(document.getElementById('root')!).render(
