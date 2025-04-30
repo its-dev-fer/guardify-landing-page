@@ -19,6 +19,7 @@ export default function TenantRegistrationForm() {
             "/api/tenants/register",
             "POST",
             [201],
+            "include",
             { nombre_residencial: nombreResidencial }
         );
 
@@ -30,8 +31,8 @@ export default function TenantRegistrationForm() {
     return (    
         <div className="min-h-screen flex items-center justify-center">
           <img src={imagen} alt=""
-              className="w-[50vw] h-[100vh]" />
-          <div className="w-1/2 h-[75vh] flex flex-col justify-between">
+              className="w-[50vw] h-[100vh] hidden smd:block" />
+          <div className="w-full lg:w-1/2 h-[75vh] flex flex-col justify-between">
               <div className="w-full flex justify-center mb-6">
                   <h1 className="text-[#338680] font-sans text-xl block w-[75%] font-bold"
                   >La mejor experiencia y seguridad para tu residencial comienzan aquí</h1>

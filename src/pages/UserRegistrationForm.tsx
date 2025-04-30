@@ -24,7 +24,7 @@ export default function RegistrationPage() {
           //logica adicional
           return;
       }
-      const result = await handleAPIFetch('/api/users/register-admin', 'POST', [201], { nombre, email, password, confirmPassword });
+      const result = await handleAPIFetch('/api/users/register-admin', 'POST', [201], "include", { nombre, email, password, confirmPassword });
       if (result) {
           navigate('/dashboard');
       }
@@ -34,8 +34,8 @@ export default function RegistrationPage() {
   return (
       <div className="min-h-screen flex items-center justify-center">
           <img src={imagen} alt=""
-              className="w-[50vw] h-[100vh]" />
-          <div className="w-1/2 h-[75vh] flex flex-col justify-between">
+              className="w-[50vw] h-[100vh] hidden smd:block" />
+          <div className="w-full lg:w-1/2 h-[75vh] flex flex-col justify-between">
               <div className="w-full flex justify-center mb-6">
                   <h1 className="text-[#338680] font-sans text-xl block w-[75%] font-bold"
                 >La mejor experiencia y seguridad para tu residencial comienzan aquí</h1>
@@ -44,7 +44,7 @@ export default function RegistrationPage() {
                   <FormField labelHtmlFor="nombre" labeltext="Ingresa tu nombre completo" inputType="text" valueSetter={setNombre} inputValue={nombre} />
                   <FormField labelHtmlFor="email" labeltext="Ingresa tu correo electronico" inputType="email" valueSetter={setEmail} inputValue={email} />
                   <FormField labelHtmlFor="password" labeltext="Ingresa tu contraseña" inputType="password" valueSetter={setPassword} inputValue={password} />
-                  <FormField labelHtmlFor="confirmPassword" labeltext="confirma tu contraseña" inputType="password" valueSetter={setConfirmPassword} inputValue={confirmPassword} />
+                  <FormField labelHtmlFor="confirmPassword" labeltext="Confirma tu contraseña" inputType="password" valueSetter={setConfirmPassword} inputValue={confirmPassword} />
                   <div className="flex justify-center w-full h-[15%]">
                     <button type="submit" className="w-[70%] h-full rounded bg-[#338680] text-white">Crear mi cuenta</button>
                   </div>

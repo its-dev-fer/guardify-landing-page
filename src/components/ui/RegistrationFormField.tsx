@@ -24,7 +24,8 @@ export default function RegistrationFormField<T>({ labelHtmlFor, labeltext, inpu
                 focus:outline-none 
                 focus:border-[#338680] 
                 placeholder-gray-400 
-                p-2 w-[100%] bg-[#F7F7F7]"/>
+                p-2 w-[100%] bg-[#F7F7F7]
+                h-[6vh] smd:h-[7vh]"/>
             </div>
         </div>
     );

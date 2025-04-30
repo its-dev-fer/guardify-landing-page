@@ -6,12 +6,15 @@ type ResponseBody = {
     message: string;
 } & Record<string, unknown>;
 
-export default async function handleAPIFetch(route: string, method: string, expectedStatusCodes:number[], data?: object): Promise<ResponseBody | null> {
+type Credentials = "omit" | "include" | "same-origin";
+
+export default async function handleAPIFetch(route: string, method: string, expectedStatusCodes:number[], credentials:Credentials = 'include', data?: object): Promise<ResponseBody | null> {
     const requestConfig:RequestConfig = {
         method: method,
         headers: {
             'Content-Type': 'application/json'
-        }
+        },
+        credentials
     };
     if (method !== 'GET' && data) {
         requestConfig.body = JSON.stringify(data);
