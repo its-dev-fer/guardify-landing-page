@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router";
 import handleAPIFetch from "../helpers/handleFetch";
 import RegistrationFormField from "../components/ui/RegistrationFormField";
-import imagen from "../assets/onboarding.png";
+import imagen from "../assets/ImagenDeFamilia.jpg";
 
 const FormField = RegistrationFormField;
 
@@ -41,9 +41,9 @@ export default function RegistrationPage() {
                 >La mejor experiencia y seguridad para tu residencial comienzan aquí</h1>
               </div>
               <form onSubmit={handleSubmit} className="w-full h-[80%] flex flex-col justify-between">
-                  <FormField labelHtmlFor="nombre" labeltext="ingresa tu nombre completo" inputType="text" valueSetter={setNombre} inputValue={nombre} />
-                  <FormField labelHtmlFor="email" labeltext="ingresa tu correo electronico" inputType="email" valueSetter={setEmail} inputValue={email} />
-                  <FormField labelHtmlFor="password" labeltext="ingresa tu contraseña" inputType="password" valueSetter={setPassword} inputValue={password} />
+                  <FormField labelHtmlFor="nombre" labeltext="Ingresa tu nombre completo" inputType="text" valueSetter={setNombre} inputValue={nombre} />
+                  <FormField labelHtmlFor="email" labeltext="Ingresa tu correo electronico" inputType="email" valueSetter={setEmail} inputValue={email} />
+                  <FormField labelHtmlFor="password" labeltext="Ingresa tu contraseña" inputType="password" valueSetter={setPassword} inputValue={password} />
                   <FormField labelHtmlFor="confirmPassword" labeltext="confirma tu contraseña" inputType="password" valueSetter={setConfirmPassword} inputValue={confirmPassword} />
                   <div className="flex justify-center w-full h-[15%]">
                     <button type="submit" className="w-[70%] h-full rounded bg-[#338680] text-white">Crear mi cuenta</button>

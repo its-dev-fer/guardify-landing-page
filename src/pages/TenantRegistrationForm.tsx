@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import handleAPIFetch from "../helpers/handleFetch";
 import RegistrationFormField from "../components/ui/RegistrationFormField";
-import imagen from "../assets/onboarding.png";
+import imagen from "../assets/ImagenDeFamilia.jpg";
 import { useNavigate } from "react-router";
 
 const FormField = RegistrationFormField;
@@ -37,7 +37,7 @@ export default function TenantRegistrationForm() {
                   >La mejor experiencia y seguridad para tu residencial comienzan aquí</h1>
               </div>
               <form onSubmit={handleSubmit} className="w-full h-[80%] flex flex-col justify-start gap-8">
-                  <FormField labelHtmlFor="nombre_residencial" labeltext="ingresa el nombre de tu residencial"
+                  <FormField labelHtmlFor="nombre_residencial" labeltext="Ingresa el nombre de tu residencial"
                   inputType="text" valueSetter={setNombreResidencial} inputValue={nombreResidencial}/>
                   <div className="flex justify-center w-full mt-2">
                       <button type="submit" className="w-[70%] h-12 rounded bg-[#338680] text-white">Continuar</button>
