@@ -12,6 +12,9 @@ export default {
       colors: {
         'guardify':'#89D7B5',
         'guardify-dark':'#338680',
+      },
+      screens: {
+        'smd': '700px'
       }
     },
   },

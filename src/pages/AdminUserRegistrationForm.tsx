@@ -1,0 +1,69 @@
+import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router";
+import handleAPIFetch from "../helpers/handleFetch";
+import RegistrationFormField from "../components/ui/RegistrationFormField";
+import imagen from "../assets/ImagenDeFamilia.jpg";
+
+const FormField = RegistrationFormField;
+
+export default function RegistrationPage() {
+  const [nombre, setNombre] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [confirmPassword, setConfirmPassword] = useState('');
+  const [authorized, setAuthorized] = useState(false);
+  
+  useEffect(() => {
+      async function checkAuthorization() {
+        const response = await handleAPIFetch('/api/users/admin/register-access', "GET", [200], "include");
+          if (!response || response.message !== "authorized") {
+            navigate('/tenant/register');
+            return;
+        }
+        setAuthorized(true);
+      }
+      checkAuthorization();
+  }, []);
+
+  const navigate = useNavigate();
+
+  async function handleSubmit (e: React.FormEvent) {
+      e.preventDefault();
+      if ((!nombre || !email) || (!password || !confirmPassword)) {
+          //logica adicional
+          return;
+      }
+      if (password !== confirmPassword) {
+          //logica adicional
+          return;
+      }
+      const result = await handleAPIFetch('/api/users/register-admin', 'POST', [201], "include", { nombre, email, password, confirmPassword });
+    if (result) {
+        console.log("exito en el registro");      
+          navigate('/dashboard');
+      }
+    };
+    
+
+  return ( authorized ?
+      <div className="min-h-screen flex items-center justify-center">
+          <img src={imagen} alt=""
+              className="w-[50vw] h-[100vh] hidden smd:block" />
+          <div className="w-full lg:w-1/2 h-[75vh] flex flex-col justify-between">
+              <div className="w-full flex justify-center mb-6">
+                  <h1 className="text-[#338680] font-sans text-xl block w-[75%] font-bold"
+                >La mejor experiencia y seguridad para tu residencial comienzan aquí</h1>
+              </div>
+              <form onSubmit={handleSubmit} className="w-full h-[80%] flex flex-col justify-between">
+                  <FormField labelHtmlFor="nombre" labeltext="Ingresa tu nombre completo" inputType="text" valueSetter={setNombre} inputValue={nombre} />
+                  <FormField labelHtmlFor="email" labeltext="Ingresa tu correo electronico" inputType="email" valueSetter={setEmail} inputValue={email} />
+                  <FormField labelHtmlFor="password" labeltext="Ingresa tu contraseña" inputType="password" valueSetter={setPassword} inputValue={password} />
+                  <FormField labelHtmlFor="confirmPassword" labeltext="Confirma tu contraseña" inputType="password" valueSetter={setConfirmPassword} inputValue={confirmPassword} />
+                  <div className="flex justify-center w-full h-[15%]">
+                    <button type="submit" className="w-[70%] h-full rounded bg-[#338680] text-white">Crear mi cuenta</button>
+                  </div>
+              </form>
+          </div>
+    </div> : null
+  );
+}
