@@ -1,6 +1,7 @@
 //import React, { useState } from "react";
 import DashboardHeader from "../components/DashboardHeader";
 import DashboardMenu from "../components/DashboardMenu";
+import BillingBoard from "../components/BillingBoard";
 
 export default function Dashboard() {
     return (
@@ -9,6 +10,7 @@ export default function Dashboard() {
             <div className="w-[90vw]">
                 <DashboardMenu />
             </div>
+            <BillingBoard />
         </div>
     );
 }
